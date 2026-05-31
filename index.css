@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+
+  --color-gold: #d4af37;
+  --color-gold-light: #f5e4b3;
+  --color-gold-dark: #aa841c;
+  --color-navy: #0a192f;
+  --color-navy-light: #172a45;
+  --color-navy-dark: #020c1b;
+  
+  --animate-float-slow: float-slow 8s ease-in-out infinite;
+  --animate-float-medium: float-medium 6s ease-in-out infinite;
+  --animate-float-fast: float-fast 4s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-spin-slow: spin-slow 20s linear infinite;
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+  }
+  @keyframes float-medium {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(-2deg); }
+  }
+  @keyframes float-fast {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.03); }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-thumb-hover);
+}
+
+/* Theme variables */
+:root {
+  --color-scrollbar-track: #f8fafc;
+  --color-scrollbar-thumb: #e2e8f0;
+  --color-scrollbar-thumb-hover: #cbd5e1;
+  scroll-behavior: smooth;
+}
+
+:root.dark {
+  --color-scrollbar-track: #020c1b;
+  --color-scrollbar-thumb: #172a45;
+  --color-scrollbar-thumb-hover: #1e3a60;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+/* Custom Utilities for Premium Glassmorphism */
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(10, 25, 47, 0.04);
+}
+
+.glass-panel-dark {
+  background: rgba(10, 25, 47, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-nav-light {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.glass-nav-dark {
+  background: rgba(2, 12, 27, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* Glowing text effects */
+.glow-text-gold {
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.glow-text-navy {
+  text-shadow: 0 0 10px rgba(10, 25, 47, 0.3);
+}
+
+/* Custom dynamic gold gradient borders */
+.gradient-border-gold {
+  position: relative;
+}
+.gradient-border-gold::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--color-gold), #ffffff, var(--color-gold-dark));
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0.2;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.dark .gradient-border-gold::after {
+  background: linear-gradient(135deg, var(--color-gold), #020c1b, var(--color-gold-dark));
+}
+.gradient-border-gold:hover::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
+}
+
+/* Disable body scroll when modal is open */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Custom animations */
+.transition-all-500 {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
